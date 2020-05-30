@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
-use App\Controllers\Admin\Shop;
+use App\Controllers\Admin\Shop as Adminshop;
 class Home extends BaseController
 {
 	public function index()
@@ -15,6 +15,10 @@ class Home extends BaseController
 		
 		$shop=new Shop();
 		$shop->products('laptop','i7');
+        echo "<br>";
+		$adminshop=new Adminshop();
+		$adminshop->products('laptop','i7');
+
 	}
 
 	//--------------------------------------------------------------------

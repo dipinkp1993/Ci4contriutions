@@ -1,17 +1,16 @@
 <?php namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 
-class Shop extends BaseController
+class Users extends BaseController
 {
 	public function index()
 	{
-		return view('shop');
+		echo "User details";
     }
-    public function products($type,$subtype)
+    public function getAllUsers()
     {
-        echo "Admin products";
-        echo $type;
-        echo $subtype;
+        echo "<h2>All Users</h2>";
+      
         //return view('products');
     }
     

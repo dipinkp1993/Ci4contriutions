@@ -1,5 +1,4 @@
-<?php namespace App\Controllers\Admin;
-use App\Controllers\BaseController;
+<?php namespace App\Controllers;
 
 class Shop extends BaseController
 {
@@ -9,12 +8,11 @@ class Shop extends BaseController
     }
     public function products($type,$subtype)
     {
-        echo "Admin products";
         echo $type;
         echo $subtype;
         //return view('products');
     }
-    
+   
 
 	//--------------------------------------------------------------------
 
