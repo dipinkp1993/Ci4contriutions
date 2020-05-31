@@ -6,16 +6,12 @@ class Blog extends BaseController
 		$data=[];
 		$posts=['title1','title2','title3'];
 		$data['posts']=$posts;
-        echo view("templates/header",$data);
-        echo view('blog_home');
-        echo view("templates/footer");
+        return view('blog_home',$data);   
 	}
 	public function post()
 	{
 		$data=['title'=>"DIPIN K P's BLOG",'posttitle'=>"DIPIN K P's POST"];
-		echo view("templates/header",$data);
-        echo view('single_post');
-        echo view("templates/footer");
+        return view('single_post',$data);
        
 	}
 
