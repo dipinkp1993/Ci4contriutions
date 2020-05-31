@@ -31,9 +31,6 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->add('productzone/(:any)/(:any)','Shop::products/$1/$2');
-$routes->add('blog',function(){
-	echo "<h2>Blog Page</h2>";
-});
 $routes->group('admin',function($routes){
 	$routes->add('users','Admin\Users::getAllUsers');
 	$routes->add('products/(:any)/(:any)','Admin\Shop::products/$1/$2');
