@@ -15,7 +15,18 @@
 
         <!-- Blog Post -->
         <?php foreach ($posts as $post ):?>
-        <?= view_cell('\App\Libraries\Blog::postItem',['title'=>$post]);?>
+          <div class="card mb-4">
+          <img class="card-img-top" src="<?= base_url('images/pimage.png');?>" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title"><?= $post->title?></h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="/blog/post/<?= $post->post_id?>" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on ><?= $post->post_created_at?> by
+            <a href="#"><?= $post->email?></a>
+          </div>
+        </div>
         <?php endforeach ?>
 
         <!-- Blog Post -->

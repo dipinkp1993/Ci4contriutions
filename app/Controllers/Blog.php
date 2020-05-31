@@ -1,12 +1,13 @@
 <?php namespace App\Controllers;
 use App\Models\BlogModel;
+use App\Models\CustomModel;
 class Blog extends BaseController
 {
 	public function index()
 	{
 		$data=[];
-		$posts=['title1','title2','title3'];
-		$data['posts']=$posts;
+		$model=new CustomModel();
+		$data['posts']=$model->getPosts();
         return view('blog_home',$data);   
 	}
 	public function post($id)
