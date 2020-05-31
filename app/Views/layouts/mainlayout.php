@@ -38,7 +38,7 @@
             <a class="nav-link" href="/blog/post">Posts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="/blog/createpost">Add Post</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
