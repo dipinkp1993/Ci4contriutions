@@ -31,7 +31,7 @@ class Image extends BaseController
              }*/
              $path="./uploads/images/manipulated/";
              $files=$request->getFiles();
-             $image=service('image');
+             $imageService=service('image');
 			 foreach ( $files['theFile'] as $file) {
 
 			if($file->isValid()&& !$file->hasMoved())
@@ -39,20 +39,16 @@ class Image extends BaseController
 				 
                 $file->move($path) ;
                 $fileName=$file->getName();
-                if(!file_exists($path.'thumbs/'))
-                { 
-                    mkdir($path.'thumbs/',755);
-                }
-
-               $image->withFile(src($fileName))
-                     ->fit(150,150,'center')
-                     ->save($path.'thumbs/'. $fileName);
+                $data['image']=$fileName;
+                $this->ImageManipulation($path,'thumbs',$fileName,$imageService);
+                $data['folders'][]="thumbs";
+                $this->ImageManipulation($path,'flip',$fileName,$imageService);
+                $data['folders'][]="flip";
 				
 			 }
 				
 			 }
-			  exit();
-			  return redirect()->to('/form/success');
+			  
 			}
 			else{
 				$data['validation']=$this->validator;
@@ -62,10 +58,27 @@ class Image extends BaseController
 		}
 		return view('image',$data);
 	}
-	function success(){
-		return "Hey Passed validation";
-	}
-    
+	private function ImageManipulation($path,$folder,$fileName,$imageService)
+    {
+        $savepath=$path.'/'.$folder;
+        if(!file_exists($savepath))
+        { 
+            mkdir($savepath,755);
+        }
+
+        $imageService->withFile(src($fileName));
+       switch ($folder) {
+        case 'thumbs':
+               $imageService->fit(150,150);
+               break;
+        case 'flip':
+                $imageService->flip('horizontal');
+                break;
+       }
+            
+        return  $imageService->save($savepath.'/'.$fileName);
+
+    }
    
 
 	//--------------------------------------------------------------------

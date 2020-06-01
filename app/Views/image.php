@@ -44,6 +44,25 @@
     
 
     </div>
+    <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1>
+
+  <hr class="mt-2 mb-5">
+<?php if(isset($image)):?>
+  <div class="row text-center text-lg-left">
+  <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="<?= src($image)?>" alt="">
+          </a>
+    </div>
+  <?php foreach($folders as $folder):?>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="<?= src($image,$folder)?>" alt="">
+          </a>
+    </div>
+  <?php endforeach;?>
+  </div>
+<?php endif;?>
     <!-- /.row -->
 
   </div>
