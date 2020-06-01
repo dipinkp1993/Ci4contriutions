@@ -30,24 +30,43 @@ class Form extends BaseController
 					'label'=>'Application Date',
 					'errors'=>['date_check'=>'You cannot Add a date Before Today']
 					]*/
-					'theFile'=>[
+					/*'theFile'=>[
 						'rules'=>'uploaded[theFile]|max_size[theFile,1024]|is_image[theFile]',
 						'label'=>'This File',
 						'errors'=>[
 							'uploaded'=>'Enter a File',
 							 'max_size'=>'Maximum Size Allowed is 1 MB',
 							 'is_image'=>'You Are Trying to upload a file other than image file'
-						]
+						]*/
+						'theFile'=>[
+							'rules'=>'uploaded[theFile.0]|is_image[theFile]',
+							'label'=>'This File',
+							'errors'=>[
+								'uploaded'=>'Enter a File',
+								 'max_size'=>'Maximum Size Allowed is 1 MB',
+								 'is_image'=>'You Are Trying to upload a file other than image file'
+							]
 						
 						]
 				
 			];
 			if($this->validate($rules)){
 			// database process ,login process successful
-			  $file=$request->getFile('theFile');
+			 /* $file=$request->getFile('theFile');
 			 if($file->isValid()&& !$file->hasMoved())
 			 {
 				$file->move('./uploads/images/',$file->getRandomName()) ;
+			 }*/
+			 $files=$request->getFiles();
+			 foreach ( $files['theFile'] as $file) {
+
+			if($file->isValid()&& !$file->hasMoved())
+			 {
+				 echo $file->getName()."<br><hr>";
+				$file->move('./uploads/images/multiple',$file->getRandomName()) ;
+				echo $file->getName()."<br><hr>";
+			 }
+				
 			 }
 			  exit();
 			  return redirect()->to('/form/success');

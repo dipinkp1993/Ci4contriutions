@@ -42,7 +42,7 @@
   </div>
   <div class="form-group">
   <label for="exampleInputPassword1">Upload File </label>
-  <input type="file" name="theFile" class="form_control" id="exampleInputPassword1">
+  <input type="file" multiple name="theFile[]" class="form_control" id="exampleInputPassword1">
 
 </div>
   <div class="form-check">
