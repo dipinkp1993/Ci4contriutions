@@ -12,7 +12,7 @@ class Form extends BaseController
 		if($request->getMethod()=="post")
 		{
 			$rules=[
-				'email'=>[
+				/*'email'=>[
 					'rules'=>'required|valid_email',
 					'label'=>'Email Address',
 					'errors'=>[
@@ -29,11 +29,27 @@ class Form extends BaseController
 					'rules'=>'required|date_check',
 					'label'=>'Application Date',
 					'errors'=>['date_check'=>'You cannot Add a date Before Today']
-					]
+					]*/
+					'theFile'=>[
+						'rules'=>'uploaded[theFile]|max_size[theFile,1024]|is_image[theFile]',
+						'label'=>'This File',
+						'errors'=>[
+							'uploaded'=>'Enter a File',
+							 'max_size'=>'Maximum Size Allowed is 1 MB',
+							 'is_image'=>'You Are Trying to upload a file other than image file'
+						]
+						
+						]
 				
 			];
 			if($this->validate($rules)){
 			// database process ,login process successful
+			  $file=$request->getFile('theFile');
+			 if($file->isValid()&& !$file->hasMoved())
+			 {
+				$file->move('./uploads/images/',$file->getRandomName()) ;
+			 }
+			  exit();
 			  return redirect()->to('/form/success');
 			}
 			else{
